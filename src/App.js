@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { ContactForm } from './components/contact-form/ContactForm';
+import { Gallery } from './components/gallery/Gallery';
+import NavBar from './components/navbar/NavBar';
+import { TodoApp } from './pages/todoapp/TodoApp';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <NavBar></NavBar>
+        <Switch>
+          <Route exact path='/gallery'>
+            <Gallery />
+          </Route>
+          <Route exact path='/contact-form'>
+            <ContactForm />
+          </Route>
+          <Route exact path='/todo'>
+            <TodoApp />
+          </Route>
+          <Redirect to="/todo" />
+        </Switch>
+      </Router>
+    </>
   );
 }
 
